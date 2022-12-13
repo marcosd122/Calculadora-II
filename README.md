@@ -1,6 +1,6 @@
-# Curso-WEB - Card Animation - Grid
+# Curso-WEB - Calculadora
 
-Projeto de desenvolvimento Card Animation - Grid
+Projeto de desenvolvimento Calculadora
 
 Atividade curso Web
 
