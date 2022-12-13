@@ -1,8 +1,8 @@
 * {
     margin: 0;
-    padding: 0;               
-    user-select: none;
-    font-family: "Montserrat", sans-serif;
+    padding: 0;        
+    box-sizing: border-box;       
+    user-select: none;    
   }
   
   :root {
@@ -23,6 +23,7 @@
     --cor-bg: #1f2641;
     --cor-bg1: #2e3267;
     --cor-bg2: #424890;
+    --cor-bg3: #171c2f;
   
     --container-width-lg: 80%;
     --container-width-md: 90%;
@@ -31,94 +32,123 @@
   }
   
   body {
-    height: 100vh;
-    display: flex;
+    width: 100%; 
+    min-height: 100vh;  
+    display: flex;    
     align-items: center;
     justify-content: center;
     background: var(--cor-bg);    
     background-image: url(../img/bg-texture.png);  
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 2rem;
+    place-items: center;
   }
 
   .card {
-    position: relative;
-    width: 250px;
-    height: 380px;
-    background: url(../img/Art_2.png) top;
-    text-align: center;
-    border-radius: 20px;    
-    background-color: var(--cor-branco);
+    max-width: 25rem;
+    padding: 2rem;
+    border: 1px solid var(--cor-clara);
+    background: var(--cor-escura-variante-1);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;    
+    flex-direction: column;
+    transition: transform .4s, background .4s;
+    cursor: pointer;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);    
+    background: var(--cor-bg3);
+  }
+
+  .imgbx {
+    width: 100%;
+    height: 400px;
+    border-radius: 15px;
     overflow: hidden;
   }
 
-  .card .cover {
-    position: absolute;
+  .imgbx img {
+    border-radius: 15px;
     width: 100%;
     height: 100%;
-    background: var(--cor-escura-op);
-    bottom: -380px;
-    transition: .4s;
+    margin-bottom: 1.5rem;
+    filter: grayscale(100%);
+    transition: filter .4s;
   }
 
-  .card:hover .cover {
-    bottom: 0;
+  .imgbx:hover img{
+    filter: grayscale(0);
   }
 
-  .card h1 {
+  .card .text {
     color: var(--cor-branco);
-    transition-delay: .5s;
+    margin-top: 1.5rem;
+    margin-bottom: 3.5rem;
+    line-height: 1.2;
+    font-size: 1.2rem;
   }
 
-  .card p {
+  .btn {
+    padding: 1rem 2rem;
     color: var(--cor-branco);
-    font-style: italic;
-    font-weight: 600;
-    transition-delay: .8s;
+    border-radius: 50px;
+    border: 1px solid var(--cor-clara);
+    text-decoration: none;
+    font-weight: bolder;
+    position: relative;
+    width: max-content;
+    transition: background .4s, color .4s, transform .4s;
   }
 
-  .card hr {
-    width: 70%;
-    border-radius: 50%;
-    margin: 0 auto;
-    transition-delay: 1s;
+  .btn:hover {
+    background: var(--cor-branco);
+    color: var(--cor-escura);
+    transform: translateY(-5px);
   }
 
-  .card .icons {
-    transition-delay: 1.2s;
+  @media screen and (max-width: 1024px) {
+    .container {
+      width: var(--container-width-md);
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+    }    
+
+    .card {
+      display: flex;
+    }
+
+    .terceiro {
+      grid-column: span 2;
+    }
   }
 
-  .card .icons i {
-    cursor: pointer;
-    color: var(--cor-clara);
-    font-size: 24px;
-    margin: 0 8px;
-    transition: all .4s;
-  }
+  @media screen and (max-width: 600px) {
+    .container {
+      width: var(--container-width-sm);
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    } 
+    
+    .card {
+      display: flex;
+    }
 
-  .card .icons i:hover {
-    color: var(--cor-alerta);
-  }
+    .primeiro {
+      grid-column: span 2;
+    }
+    .segundo {
+      grid-column: span 2;
+    }
 
-  .card h1,
-  .card p,
-  .card hr,
-  .card .icons {
-    opacity: 0;
-    transform: translateY(260px);
-    transition-duration: .4s;    
-  }
-
-  .card:hover h1,
-  .card:hover p {
-    opacity: 1;
-    transform: translateY(115px);
-  }
-
-  .card:hover hr {
-    opacity: 1;
-    transform: translateY(135px);
-  }
-
-  .card:hover .icons {
-    opacity: 1;
-    transform: translateY(160px);
+    .terceiro {
+      grid-column: span 2;
+    }
   }
