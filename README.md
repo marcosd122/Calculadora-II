@@ -1,6 +1,6 @@
 # Curso-WEB - Calculadora
 
-Projeto de desenvolvimento Calculadora
+Projeto de desenvolvimento Calculadora - WEB
 
 Atividade curso Web
 
