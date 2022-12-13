@@ -1,6 +1,6 @@
-# Curso-WEB - Card Animation
+# Curso-WEB - Card Animation - Grid
 
-Projeto de desenvolvimento Card Animation
+Projeto de desenvolvimento Card Animation - Grid
 
 Atividade curso Web
 
