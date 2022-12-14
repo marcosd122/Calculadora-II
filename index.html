@@ -8,8 +8,10 @@
     <title>Calculadora - WEB</title>
 
     <!--CSS-->
-
     <link rel="stylesheet" href="style/style.css" />
+
+    <!-- Poppins Fonte -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
 
     <!-- Fontawesome Icones  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -17,9 +19,46 @@
   </head>
 
   <body>
+
+    <div class="calculadora">
+      <div class="input" id="input"></div>
+      <div class="botoes">
+        <div class="operadores">
+
+        <div>+</div>
+        <div>-</div>
+        <div>&times;</div>
+        <div>&divide;</div>        
+        </div>
+        
+        <div class="esquerdaPnl">
+          <div class="numeros">
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+          </div>
+          <div class="numeros">
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+          </div>
+          <div class="numeros">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+          </div>
+          <div class="numeros">
+            <div>.</div>
+            <div>0</div>
+            <div id="limpar">C</div>
+          </div>
+        </div>
+        <div class="igual" id="resultado">=</div>
+      </div>
+    </div>
   
+    <!--JS-->
+    <script type="text/javascript" src="js/script.js"></script>
+
   </body>
-
-  <script type="text/javascript" src="js/script.js"></script>
-
 </html>

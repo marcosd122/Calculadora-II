@@ -1,80 +1,82 @@
-const resultEl = document.getElementById('result');
-const lengthEl = document.getElementById('length');
-const uppercaseEl = document.getElementById('uppercase');
-const lowercaseEl = document.getElementById('lowercase');
-const numbersEl = document.getElementById('numbers');
-const symbolsEl = document.getElementById('symbols');
-const generateEl = document.getElementById('generate');
-const clipboard = document.getElementById('clipboard');
+var input = document.getElementById("input");
+numero = document.querySelectorAll(".numeros div");
+operadores = document.querySelectorAll(".operadores div");
+resultado = document.getElementById("resultado");
+limpar = document.getElementById("limpar");
 
-const randomFunc = {
-	lower: getRandomLower,
-	upper: getRandomUpper,
-	number: getRandomNumber,
-	symbol: getRandomSymbol
+resultShow = false;
+
+for (var i = 0; i < numero.length; i++) {
+  numero[i].addEventListener("click", function (e) {
+    var currentString = input.innerHTML;
+    var lastChar = currentString[currentString.length - 1];
+
+    if (resultShow === false) {
+      input.innerHTML += e.target.innerHTML;
+    } else if (resultShow === true && lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷") {
+      resultShow = false;
+      input.innerHTML += e.target.innerHTML;
+    } else {
+      resultShow = false;
+      input.innerHTML = "";
+      input.innerHTML += e.target.innerHTML;
+    }
+  });
 }
 
-clipboard.addEventListener('click', () => {
-	const textarea = document.createElement('textarea');
-	const password = resultEl.innerText;
-	
-	if(!password) { return; }
-	
-	textarea.value = password;
-	document.body.appendChild(textarea);
-	textarea.select();
-	document.execCommand('copy');
-	textarea.remove();
-	alert('Senha copiada para a área de transferência');
-});
+for (var i = 0; i < operadores.length; i++) {
+  operadores[i].addEventListener("click", function (e) {
+    var currentString = input.innerHTML;
+    var lastChar = currentString[currentString.length - 1];
+	if (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷") {
+		var newString = currentString.substring(0, currentString.length - 1) + e.target.innerHTML;
+		input.innerHTML = newString;
+	} else if (currentString.length == 0) {
 
-generate.addEventListener('click', () => {
-	const length = +lengthEl.value;
-	const hasLower = lowercaseEl.checked;
-	const hasUpper = uppercaseEl.checked;
-	const hasNumber = numbersEl.checked;
-	const hasSymbol = symbolsEl.checked;
-	
-	resultEl.innerText = generatePassword(hasLower, hasUpper, hasNumber, hasSymbol, length);
-});
+	} else {
+		input.innerHTML += e.target.innerHTML;
+	}
+  });
+}
 
-function generatePassword(lower, upper, number, symbol, length) {
-	let generatedPassword = '';
-	const typesCount = lower + upper + number + symbol;
-	const typesArr = [{lower}, {upper}, {number}, {symbol}].filter(item => Object.values(item)[0]);
-	
-	// Se não tem um tipo selecionado
-	if(typesCount === 0) {
-		return '';
+resultado.addEventListener("click", function () {
+	var inputString = input.innerHTML;
+	var numeros = inputString.split(/\+|\-|\×|\÷/g);
+	var operadores = inputString.replace(/[0-9]|\./g, "").split("");
+
+	var divisao = operadores.indexOf("÷");
+	while (divisao != -1) {
+		numeros.splice(divisao, 2, numeros[divisao] / numeros[divisao + 1]);
+		operadores.splice(divisao, 1);
+		divisao = operadores.indexOf("÷");
+	}
+
+	var multiplicacao = operadores.indexOf("×");
+	while (multiplicacao != -1) {
+		numeros.splice(multiplicacao, 2, numeros[multiplicacao] * numeros[multiplicacao + 1]);
+		operadores.splice(multiplicacao, 1);
+		multiplicacao = operadores.indexOf("×");
+	}
+
+	var subtracao = operadores.indexOf("-");
+	while (subtracao != -1) {
+		numeros.splice(subtracao, 2, numeros[subtracao] - numeros[subtracao + 1]);
+		operadores.splice(subtracao, 1);
+		subtracao = operadores.indexOf("-");
 	}
 	
-	// cria o loop
-
-	for(let i=0; i<length; i+=typesCount) {
-		typesArr.forEach(type => {
-			const funcName = Object.keys(type)[0];
-			generatedPassword += randomFunc[funcName]();
-		});
+	var soma = operadores.indexOf("+");
+	while (soma != -1) {
+		numeros.splice(soma, 2, parseFloat(numeros[soma]) + parseFloat(numeros[soma + 1]));
+		operadores.splice(soma, 1);
+		soma = operadores.indexOf("+");
 	}
-	
-	const finalPassword = generatedPassword.slice(0, length);
-	
-	return finalPassword;
-}
 
-function getRandomLower() {
-	return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-}
+	input.innerHTML = numeros[0];
+	resultShow = true;
 
-function getRandomUpper() {
-	return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-}
+});
 
-function getRandomNumber() {
-	return +String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-}
-
-function getRandomSymbol() {
-	const symbols = '!@#$%^&*(){}[]=<>/,.'
-	return symbols[Math.floor(Math.random() * symbols.length)];
-}
+limpar.addEventListener("click", function () {
+	input.innerHTML = "";
+})

@@ -1,43 +1,138 @@
 * {
-    margin: 0;
-    padding: 0;        
-    box-sizing: border-box;       
-    user-select: none;    
-  }
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --cor-primaria: #151320;
+  --cor-sucesso: #00bf8e;
+  --cor-alerta: #f7c94b;
+  --cor-perigo: #f75842;
+  --cor-perigo-1: #f52245;
+  --cor-perigo-2: #f8617a;
+  --cor-perigo-3: #c81c39;
+  --cor-perigo-variante: rgba(247, 88, 66, 0.4);
+  --cor-branco: #fff;
+  --cor-branco-variante: #e1e1e1;
+  --cor-branco-variante-1: #e6e6e6;
+  --cor-clara: rgba(255, 255, 255, 0.7);
+  --cor-escura: #000;
+  --cor-escura-op: #000000af;
+  --cor-escura-variante: #151d2a;
+  --cor-escura-variante-1: #151d2a;
+  --cor-escura-variante-2: #1c2739;
+  --cor-cinza-variante: rgba(255, 255, 255, 0.6);
+  --cor-cinza-variante-1: rgba(255, 255, 255, 0.4);
+  --cor-cinza-variante-2: rgba(255, 255, 255, 0.05);
+  --cor-cinza-variante-3: rgba(0, 0, 0, 0.1);
+  --cor-cinza-variante-4: rgba(255, 255, 255, 0.7);
+  --cor-cinza-variante-5: rgba(255, 255, 255, 0.5);
+  --cor-cinza-variante-6: rgba(255, 255, 255, 0.075);
+  --cor-cinza-variante-7: rgba(255, 255, 255, 0.15);
+  --cor-verde: #377e78;
+  --cor-verde-variante-1: #62b4af;
+  --cor-verde-variante-2: #2a6964;
+  --cor-bg: #1f2641;
+  --cor-bg1: #2e3267;
+  --cor-bg2: #424890;
+  --cor-bg3: #171c2f;
+  --cor-bg4: #737c9c;
+
+  --container-width-lg: 80%;
+  --container-width-md: 90%;
+  --container-width-sm: 94%;
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--cor-bg);
+  background-image: url(../img/bg-texture.png);
+  font: 600 1.8rem "Source Sans Pro", sans-serif;
+}
+
+.calculadora {
+  padding: 20px;
+  border-radius: 12px;
   
-  :root {
-    --cor-primaria: #151320;
-    --cor-sucesso: #00bf8e;
-    --cor-alerta: #f7c94b;
-    --cor-perigo: #f75842;
-    --cor-perigo-variante: rgba(247, 88, 66, 0.4);
-    --cor-branco: #fff;
-    --cor-branco-variante:#e1e1e1;
-    --cor-branco-variante-1:#e6e6e6;
-    --cor-clara: rgba(255, 255, 255, 0.7);
-    --cor-escura: #000;
-    --cor-escura-op: #000000af;   
-    --cor-escura-variante: #151d2a;
-    --cor-escura-variante-1: #151d2a;
-    --cor-escura-variante-2: #1c2739;    
-    --cor-bg: #1f2641;
-    --cor-bg1: #2e3267;
-    --cor-bg2: #424890;
-    --cor-bg3: #171c2f;
+  background: var(--cor-branco);
+  box-shadow: -2px -2px 6px var(--cor-cinza-variante),
+    -2px -2px 4px var(--cor-cinza-variante-1),
+    2px 2px 2px var(--cor-cinza-variante-2),
+    2px 2px 4px var(--cor-cinza-variante-3);
+}
+
+.calculadora .input {
+  color: var(--cor-escura);
+  height: 60px;  
   
-    --container-width-lg: 80%;
-    --container-width-md: 90%;
-    --container-width-sm: 94%;
-      
-  }
-  
-  body {
-    width: 100%; 
-    min-height: 100vh;  
-    display: flex;    
-    align-items: center;
-    justify-content: center;
-    background: var(--cor-bg);    
-    background-image: url(../img/bg-texture.png);  
-    font-family: "Montserrat", sans-serif;
-  }
+  padding: 10px 0 0 18px;
+  text-align: left;
+  margin-right: 6px;
+  font-size: 2.5rem;
+  letter-spacing: 5px;
+  border: 1px solid var(--cor-escura);
+}
+
+.calculadora .operadores div {
+  color: var(--cor-branco);
+  background: var(--cor-verde);
+  display: inline-block;
+  width: 60px;
+  margin-top: 8px;
+  text-align: center;
+  padding: 10px;
+  margin: 20px 4px 10px 0;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: inset -2px -2px 6px var(--cor-verde-variante-1),
+    inset 2px 2px 4px var(--cor-verde-variante-2);
+}
+
+.calculadora .esquerdaPnl {
+  display: inline-block;
+}
+
+.calculadora .numeros div {
+  color: var(--cor-bg4);
+  cursor: pointer;
+  display: inline-block;
+  width: 60px;
+  padding: 10px;
+  text-align: center;
+  margin: 10px 4px 4px 0;
+  /* border: 1px solid var(--cor-escura); */
+}
+
+.calculadora div.igual {
+  color: var(--cor-branco);
+  display: inline-block;
+  background: var(--cor-verde);
+  text-align: center;
+  width: 60px;
+  padding: 115px 10px;
+  margin-top: 10px;
+  vertical-align: top;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: inset -2px -2px 6px var(--cor-verde-variante-1),
+    inset 2px 2px 4px var(--cor-verde-variante-2);
+}
+
+.calculadora .numeros #limpar {
+  color: var(--cor-branco);
+  background: var(--cor-perigo-1);
+  box-shadow: inset -2px -2px 6px var(--cor-perigo-2),
+    inset 2px 2px 4px var(--cor-perigo-3);
+}
+
+.calculadora .input,
+.calculadora .numeros div {
+  border-radius: 12px;
+  border: 1px solid var(--cor-escura);
+  box-shadow: inset -2px -2px 6px var(--cor-cinza-variante-4),
+    inset -2px -2px 4px var(--cor-cinza-variante-5),
+    inset 2px 2px 2px var(--cor-cinza-variante-6),
+    inset 2px 2px 4px var(--cor-cinza-variante-7);
+}
